@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import Countries from './modules/countries/Countries';
 import './App.scss';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Hello React with SASS</h1>
+        <Countries />
       </div>
     );
   }
