@@ -1,3 +1,4 @@
+import React from 'react';
 import axios from 'axios';
 
 export const getCountriesNames = () => {
@@ -5,10 +6,11 @@ export const getCountriesNames = () => {
 
   axios.get(URL)
     .then(res => {
-      const names = res.data;
+      const arr = res.data;
+      arr.map(countries => {
+        return (
+          console.log(countries.name)
+        )
+      });
     })
-    .then(names => names.map(countries => {
-      const name = countries.name
-      return name;
-    }))
   }

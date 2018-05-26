@@ -1,24 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Select } from 'antd';
 import 'antd/lib/select/style/css.js';
 import { getCountriesNames } from './selectors/countries';
+import axios from 'axios'
 
 import './Countries.scss';
 
-const Option = Select.Option;
+class Countries extends Component {
 
-function handleChange(value) {
-  console.log(`selected ${value}`);
+  state = {
+    name: `ola`,
+  }
+
+   getCountriesNames = () => {
+    const URL = "https://restcountries.eu/rest/v2/all"
+  
+    axios.get(URL)
+      .then(res => {
+        const arr = res.data;
+        arr.map(countries => this.setState({name: countries.name}));
+      })
+    }
+
+      showName = () => {
+      return (
+        <li>{this.state.name}</li>
+      )
+    }
+  
+  
+  render () {
+    console.log(this.state.name)
+    return (
+      <div>
+        <ul>
+          {this.showName()}
+        </ul>
+      </div>
+    );
+  }
 }
 
-const Countries = () => (
-  <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
-    <Option value="jack"></Option>
-    <Option value="lucy">Lucy</Option>
-    <Option value="disabled" disabled>Disabled</Option>
-    <Option value="Yiminghe">yiminghe</Option>
-    {getCountriesNames()}
-  </Select>
-)
 
 export default Countries;
