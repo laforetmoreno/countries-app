@@ -94,5 +94,17 @@
   "devDependencies": {
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1"
-  }
+  },
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morenopereira/countries-app.git"
+  },
+  "author": "Moreno Andrade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/morenopereira/countries-app/issues"
+  },
+  "homepage": "https://github.com/morenopereira/countries-app#readme"
 }
