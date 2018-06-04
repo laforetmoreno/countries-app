@@ -6,9 +6,34 @@ import { getCountriesNames } from './selectors/countries';
 import './Countries.scss';
 
 class Countries extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      names: [],
+    }
+  }
+
+  componentDidMount() {
+    fetch('https://restcountries.eu/rest/v2/all')
+    .then(results => {
+      return results.json();
+    })
+    .then(data => {
+      const map = data.map(x => {
+        return (
+          <option>{x.name}</option>
+        )
+      })
+      this.setState({
+        names: map
+      })
+    })
+  }
+
   render () {
     return (
-      <p>{getCountriesNames()}</p>
+      <select>{this.state.names}</select>
     )
   }
 }
