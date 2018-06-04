@@ -5,10 +5,7 @@ export const getCountriesNames = () => {
 
   axios.get(URL)
     .then(res => {
-      const names = res.data;
+      const data = res.data;
+      console.log(data);
     })
-    .then(names => names.map(countries => {
-      const name = countries.name
-      return name;
-    }))
   }
