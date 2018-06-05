@@ -1,16 +1,11 @@
-import React from 'react';
-import axios from 'axios';
+// import React from 'react';
 
-export const getCountriesNames = () => {
-  const URL = "https://restcountries.eu/rest/v2/all"
+export const getCountriesInfo = () => {
+  const urlCountriesInfo = `https://restcountries.eu/rest/v2/name/${name}`;
 
-  axios.get(URL)
-    .then(res => {
-      const arr = res.data;
-      arr.map(countries => {
-        return (
-          console.log(countries.name)
-        )
-      });
-    })
-  }
+  fetch(urlCountriesInfo)
+  .then(results => {
+    console.log(results.json())
+    return results.json();
+  })
+}

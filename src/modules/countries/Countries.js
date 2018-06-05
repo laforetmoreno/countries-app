@@ -1,45 +1,56 @@
 import React, { Component } from 'react';
-import { Select } from 'antd';
-import 'antd/lib/select/style/css.js';
-import { getCountriesNames } from './selectors/countries';
-import axios from 'axios'
-
 import './Countries.scss';
 
 class Countries extends Component {
 
-  state = {
-    name: `ola`,
+  constructor(props) {
+    super(props);
+    this.state = {
+      names: [],
+      infos: {}
+    }
   }
 
-   getCountriesNames = () => {
-    const URL = "https://restcountries.eu/rest/v2/all"
-  
-    axios.get(URL)
-      .then(res => {
-        const arr = res.data;
-        arr.map(countries => this.setState({name: countries.name}));
-      })
-    }
+  componentDidMount() {
+    const url = 'https://restcountries.eu/rest/v2/all';
 
-      showName = () => {
-      return (
-        <li>{this.state.name}</li>
-      )
-    }
-  
+    fetch(url)
+    .then(results => {
+      return results.json();
+    })
+    .then(data => {
+      const name = data.map(countries => {
+        return (
+          <option key={countries.name} value={countries.name}>{countries.name}</option>
+        )
+      })
+      this.setState({
+        names: name
+      })
+    })
+  }
+
+  onChangeValue = e => {
+    const name = e.target.value;
+    // console.log(name)
+    
+    const urlCountriesInfo = `https://restcountries.eu/rest/v2/name/${name}`;
+
+    fetch(urlCountriesInfo)
+    .then(results => {
+      console.log(results.json())
+      return results.json();
+    })
+    
+  }
   
   render () {
-    console.log(this.state.name)
     return (
       <div>
-        <ul>
-          {this.showName()}
-        </ul>
+      <select onChange={this.onChangeValue}>{this.state.names}</select>
       </div>
-    );
+    )
   }
 }
-
 
 export default Countries;
