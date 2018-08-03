@@ -1,5 +1,7 @@
 .Countries {
-    &__content {
-        
+    display: flex;
+
+    .ant-select {
+        margin: 30px
     }
 }
