@@ -7,7 +7,7 @@ import 'antd/lib/icon/style/css.js'
 
 import './Countries.scss';
 
-const urlBase = 'https://restcountries.eu/rest/v2/all';
+const urlCountrieName = 'https://restcountries.eu/rest/v2/all?fields=name';
 
 const Option = Select.Option;
 
@@ -16,44 +16,61 @@ class Countries extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      countries: [],
-      countriesInfo: [],
+      countriesData: [],
+      countriesName: [],
     }
 
     this.handleSearchData();
   }
   
   handleSearchData = () => {
-    axios.get(urlBase)
-    .then(resp => this.setState({countries: resp.data}))
+    axios.get(urlCountrieName)
+    .then(resp => this.setState({countriesName: resp.data}))
   }
 
   renderNames = () => {
-    const { countries } = this.state;
-    if(countries) {
+    const { countriesName } = this.state;
+    if(countriesName) {
       return (
-        countries.map(countrie => <Option value={countrie.name} key={countrie.name}>{countrie.name}</Option>)
+        countriesName.map(countrie => <Option value={countrie.name} key={countrie.name}>{countrie.name}</Option>)
       )
     }
   }
 
   getCountrieInfo = value => {
     const countrieName = value;
-    const urlCountrieName = `https://restcountries.eu/rest/v2/name/${countrieName}`;
+    const urlCountrieData = `https://restcountries.eu/rest/v2/name/${countrieName}`;
     
-    axios.get(urlCountrieName)
-    .then(resp => this.setState({countriesInfo: resp.data}))
+    axios.get(urlCountrieData)
+    .then(resp => this.setState({countriesData: resp.data}))
   }
 
-  renderCountriesInfo = () => {
-    const { countriesInfo } = this.state;
-    if(countriesInfo) {
+  renderCountriesData = () => {
+    const { countriesData } = this.state;
+    if(countriesData) {
       return (
-        countriesInfo.map(countrie => 
-            <Fragment>
-              <h2 className="Countries__infos-item">Name: {countrie.name}</h2>
-              <h2 className="Countries__infos-item">Area: {countrie.area}</h2>
-            </Fragment>
+        countriesData.map(countrie => 
+          <Fragment key={countrie.name}>
+            <h4 className="Countries__infos-item" key={countrie.name}>Name: {countrie.name}</h4>
+            <h4 className="Countries__infos-item" key={countrie.area}>Area: {countrie.area}</h4>
+            <h4 className="Countries__infos-item" key={countrie.callingCodes}>Calling Codes: {countrie.callingCodes}</h4>
+            <h4 className="Countries__infos-item" key={countrie.capital}>Capital: {countrie.capital}</h4>
+            <h4 className="Countries__infos-item" key={countrie.region}>Region: {countrie.region}</h4>
+            <h4 className="Countries__infos-item" key={countrie.demonym}>Demonym: {countrie.demonym}</h4>
+          </Fragment>
+        )
+      )
+    }
+  }
+
+  renderCountriesFlag = () => {
+    const { countriesData } = this.state;
+    if(countriesData) {
+      return (
+        countriesData.map(countrie => 
+          <Fragment key={countrie.flag}>
+            <img src={countrie.flag} alt={countrie.flag} />
+          </Fragment>
         )
       )
     }
@@ -69,7 +86,8 @@ class Countries extends Component {
         >
           {this.renderNames()}
         </Select>
-        <div className="Countries__infos">{this.renderCountriesInfo()}</div>
+        <div className="Countries__infos">{this.renderCountriesData()}</div>
+        <div className="Countries__flag">{this.renderCountriesFlag()}</div>
       </div>
     )
   }
