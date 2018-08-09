@@ -8,7 +8,7 @@ import PageHeader from '../../components/header/PageHeader';
 import Footer from '../../components/footer/Footer';
 import CountrieData from '../../components/countrie-data/CountrieData';
 import Flag from '../../components/flag/Flag';
-import urls from '../../config/urlsApi';
+import urlsApi from '../../config/urlsApi';
 
 import './Countries.scss';
 
@@ -27,21 +27,19 @@ class Countries extends Component {
   }
 
   getCountriesNames = () => {
-    axios.get(urls.countriesName)
+    axios.get(urlsApi.countriesName)
     .then(resp => this.setState({countriesName: resp.data}))
   }
 
   renderCountriesNames = () => {
     const { countriesName } = this.state;
-    if(countriesName) {
-      return (
-        countriesName.map(countrie => <Option value={countrie.name} key={countrie.name}>{countrie.name}</Option>)
-      )
-    }
+    return (
+      countriesName.map(countrie => <Option value={countrie.name} key={countrie.name}>{countrie.name}</Option>)
+    )
   }
 
   getCountriesData = value => {
-    axios.get(urls.countriesData(value))
+    axios.get(urlsApi.countriesData(value))
     .then(resp => this.setState({countriesData: resp.data}))
   }
 
