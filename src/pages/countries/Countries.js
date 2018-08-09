@@ -48,7 +48,7 @@ class Countries extends Component {
   render () {
     const { countriesData } = this.state;
     return (
-      <div className='Countries'>
+      <main className='Countries'>
         <PageHeader text="Countries App" />
         <div className="Countries__select">
         <Select
@@ -72,8 +72,8 @@ class Countries extends Component {
             </div>
           )}
         </div>
-        <Footer text="by Moreno Laforet" />
-      </div>
+        <Footer text="by Moreno Andrade" />
+      </main>
     )
   }
 }
