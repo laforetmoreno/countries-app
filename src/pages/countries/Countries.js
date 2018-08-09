@@ -8,6 +8,7 @@ import PageHeader from '../../components/header/PageHeader';
 import Footer from '../../components/footer/Footer';
 import CountrieData from '../../components/countrie-data/CountrieData';
 import Flag from '../../components/flag/Flag';
+import urls from '../../config/urlsApi';
 
 import './Countries.scss';
 
@@ -26,9 +27,7 @@ class Countries extends Component {
   }
 
   getCountriesNames = () => {
-    const urlCountrieName = 'https://restcountries.eu/rest/v2/all?fields=name';
-
-    axios.get(urlCountrieName)
+    axios.get(urls.countriesName)
     .then(resp => this.setState({countriesName: resp.data}))
   }
 
@@ -42,10 +41,7 @@ class Countries extends Component {
   }
 
   getCountriesData = value => {
-    const countrieName = value;
-    const urlCountrieData = `https://restcountries.eu/rest/v2/name/${countrieName}`;
-
-    axios.get(urlCountrieData)
+    axios.get(urls.countriesData(value))
     .then(resp => this.setState({countriesData: resp.data}))
   }
 
