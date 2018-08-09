@@ -55,7 +55,7 @@ class Countries extends Component {
           onChange={this.getCountriesData}
           defaultValue="Choose a country"
           style={{ width: 300 }}
-          >
+        >
           {this.renderCountriesNames()}
         </Select>
         </div>
