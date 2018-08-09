@@ -4,6 +4,8 @@ import { Select } from 'antd';
 import 'antd/lib/button/style/index.css'
 import 'antd/lib/select/style/index.css'
 import 'antd/lib/icon/style/css.js'
+import PageHeader from '../../components/header/PageHeader';
+import Footer from '../../components/footer/Footer';
 
 import './Countries.scss';
 
@@ -20,15 +22,15 @@ class Countries extends Component {
       countriesName: [],
     }
 
-    this.handleSearchData();
+    this.getCountriesNames();
   }
   
-  handleSearchData = () => {
+  getCountriesNames = () => {
     axios.get(urlCountrieName)
     .then(resp => this.setState({countriesName: resp.data}))
   }
 
-  renderNames = () => {
+  renderCountriesNames = () => {
     const { countriesName } = this.state;
     if(countriesName) {
       return (
@@ -37,7 +39,7 @@ class Countries extends Component {
     }
   }
 
-  getCountrieInfo = value => {
+  getCountriesData = value => {
     const countrieName = value;
     const urlCountrieData = `https://restcountries.eu/rest/v2/name/${countrieName}`;
     
@@ -79,15 +81,19 @@ class Countries extends Component {
   render () {
     return (
       <div className='Countries'>
-        <Select 
-        onChange={this.getCountrieInfo}
-        defaultValue="Choose a country" 
-        style={{ width: 300 }}
-        >
-          {this.renderNames()}
-        </Select>
-        <div className="Countries__infos">{this.renderCountriesData()}</div>
-        <div className="Countries__flag">{this.renderCountriesFlag()}</div>
+      <PageHeader />
+        <div className='Countries__content'>
+          <Select 
+          onChange={this.getCountriesData}
+          defaultValue="Choose a country" 
+          style={{ width: 300 }}
+          >
+            {this.renderCountriesNames()}
+          </Select>
+          <div className="Countries__content__infos">{this.renderCountriesData()}</div>
+          <div className="Countries__content__flag">{this.renderCountriesFlag()}</div>
+        </div>
+        <Footer />
       </div>
     )
   }

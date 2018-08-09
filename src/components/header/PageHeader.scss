@@ -1,5 +1,8 @@
 .PageHeader {
-    height: 60px;
-    width: 100%;
-    background: black;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: lightskyblue;
+    padding: 0 20px;
 }

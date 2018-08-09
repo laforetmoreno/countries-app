@@ -1,9 +1,11 @@
 import React from 'react';
 
+import './PageHeader.scss'
+
 const PageHeader = () => (
-    <div className='PageHeader'>
-        <span>page header</span>
-    </div>
+    <header className='PageHeader'>
+        <span>Countries App</span>
+    </header>
 )
 
 export default PageHeader;

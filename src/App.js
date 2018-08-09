@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Countries from './components/countries/Countries';
+import Countries from './pages/countries/Countries';
 import './App.scss';
 
 class App extends Component {
