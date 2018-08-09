@@ -7,9 +7,9 @@
   align-items: center;
   justify-content: flex-end;
   padding: 0 20px;
-  background: lightskyblue;
+  background: #00b6cd;
 
-  a {
+  &__item {
     color: #fff;
 
     &:hover {

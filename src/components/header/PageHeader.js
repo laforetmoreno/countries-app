@@ -1,11 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './PageHeader.scss'
 
-const PageHeader = () => (
+const PageHeader = ({ text }) => (
   <header className='PageHeader'>
-    <span>Countries App</span>
+    <span className="PageHeader__text">{text}</span>
   </header>
-)
+);
+
+PageHeader.Proptypes = {
+  text: PropTypes.sting,
+}
 
 export default PageHeader;

@@ -1,11 +1,17 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
+import urlLinkedin from '../../config/urlSocialMedias';
 
 import './Footer.scss'
 
-const Footer = () => (
+const Footer = ({ text }) => (
   <footer className="Footer">
-    <a href="https://www.linkedin.com/in/moreno-andrade-1868b7120/">by Moreno Laforet</a>
+    <a className="Footer__item" href={urlLinkedin}>{text}</a>
   </footer>
 )
+
+Footer.Proptypes = {
+  text: PropTypes.string,
+}
 
 export default Footer

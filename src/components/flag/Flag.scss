@@ -4,5 +4,9 @@
   &__item {
     max-width: 400px;
     max-height: 400px;
+
+    @media (max-width: 767px) {
+      width: 100%
+    }
   }
 }

@@ -1,12 +1,16 @@
 .Countries {
+  display: flex;
+  flex-direction: column;
+
+  &__select {
+    margin-top: 40px;
+  }
+
+  &__content {
     display: flex;
     flex-direction: column;
-
-    .ant-select {
-        // margin: 30px
-    }
-
-    &__content {
-        padding: 30px;   
-    }
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+  }
 }
