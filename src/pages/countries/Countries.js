@@ -6,6 +6,7 @@ import 'antd/lib/select/style/index.css'
 import 'antd/lib/icon/style/css.js'
 import PageHeader from '../../components/header/PageHeader';
 import Footer from '../../components/footer/Footer';
+import CountrieData from '../../components/countrie-data/CountrieData';
 
 import './Countries.scss';
 
@@ -47,24 +48,6 @@ class Countries extends Component {
     .then(resp => this.setState({countriesData: resp.data}))
   }
 
-  renderCountriesData = () => {
-    const { countriesData } = this.state;
-    if(countriesData) {
-      return (
-        countriesData.map(countrie => 
-          <Fragment key={countrie.name}>
-            <h4 className="Countries__infos-item" key={countrie.name}>Name: {countrie.name}</h4>
-            <h4 className="Countries__infos-item" key={countrie.area}>Area: {countrie.area}</h4>
-            <h4 className="Countries__infos-item" key={countrie.callingCodes}>Calling Codes: {countrie.callingCodes}</h4>
-            <h4 className="Countries__infos-item" key={countrie.capital}>Capital: {countrie.capital}</h4>
-            <h4 className="Countries__infos-item" key={countrie.region}>Region: {countrie.region}</h4>
-            <h4 className="Countries__infos-item" key={countrie.demonym}>Demonym: {countrie.demonym}</h4>
-          </Fragment>
-        )
-      )
-    }
-  }
-
   renderCountriesFlag = () => {
     const { countriesData } = this.state;
     if(countriesData) {
@@ -79,6 +62,7 @@ class Countries extends Component {
   }
   
   render () {
+    const { countriesData } = this.state
     return (
       <div className='Countries'>
       <PageHeader />
@@ -90,7 +74,7 @@ class Countries extends Component {
           >
             {this.renderCountriesNames()}
           </Select>
-          <div className="Countries__content__infos">{this.renderCountriesData()}</div>
+          <CountrieData data={countriesData} />
           <div className="Countries__content__flag">{this.renderCountriesFlag()}</div>
         </div>
         <Footer />
