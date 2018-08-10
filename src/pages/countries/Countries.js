@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Select } from 'antd';
 import 'antd/lib/button/style/index.css';
 import 'antd/lib/select/style/index.css';
 import 'antd/lib/icon/style/css.js';
-
 import PageHeader from '../../components/header/PageHeader';
 import Footer from '../../components/footer/Footer';
 import CountrieData from '../../components/countrie-data/CountrieData';
@@ -51,13 +50,13 @@ class Countries extends Component {
       <main className='Countries'>
         <PageHeader text="Countries App" />
         <div className="Countries__select">
-        <Select
-          onChange={this.getCountriesData}
-          defaultValue="Choose a country"
-          style={{ width: 300 }}
-        >
-          {this.renderCountriesNames()}
-        </Select>
+          <Select
+            onChange={this.getCountriesData}
+            defaultValue="Choose a country"
+            style={{ width: 300 }}
+          >
+            {this.renderCountriesNames()}
+          </Select>
         </div>
         <div className='Countries__content'>
           {countriesData.length === 0 ? (
@@ -66,10 +65,10 @@ class Countries extends Component {
               text="AHere you can see the curiosities of the countries around the world, so enjoy!"
             />
           ) : (
-            <div>
+            <Fragment>
               <CountrieData data={countriesData} />
               <Flag data={countriesData} />
-            </div>
+            </Fragment>
           )}
         </div>
         <Footer text="by Moreno Andrade" />
