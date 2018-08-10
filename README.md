@@ -1,7 +1,6 @@
 # Countries app
 
-## Hello visitor, welcome to the Countrie App
-## AHere you can see the curiosities of the countries around the world, so enjoy!
+- Hello visitor, welcome to the Countrie App. AHere you can see the curiosities of the countries around the world, so enjoy!
 
 ## Dependencies
 
