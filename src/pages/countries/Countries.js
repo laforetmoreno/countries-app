@@ -10,7 +10,7 @@ import CountrieData from '../../components/countrie-data/CountrieData';
 import Flag from '../../components/flag/Flag';
 import WelcomeVisitor from '../../components/welcome-visitor/WelcomeVisitor';
 import urlsApi from '../../config/urlsApi';
-import fetch from '../../utils/fetch';
+import fetch from '../../services/fetch';
 
 import './Countries.scss';
 
@@ -29,12 +29,12 @@ class Countries extends Component {
   }
 
   getCountriesNames = () => {
-    fetch(urlsApi.countriesName)
+    fetch( 'get' ,urlsApi.countriesName)
     .then(resp => this.setState({countriesName: resp.data}))
   }
 
   getCountriesData = value => {
-    fetch(urlsApi.countriesData(value))
+    fetch('get', urlsApi.countriesData(value))
     .then(resp => this.setState({countriesData: resp.data}))
   }
 
